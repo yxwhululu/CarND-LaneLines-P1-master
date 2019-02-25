@@ -1,44 +1,56 @@
-# CarND-LaneLines-P1-master
-Finding Lane Lines on the Road
-Finding Lane Lines on the Road
-________________________________________
-Finding Lane Lines on the Road
-The goals / steps of this project are the following:
-•	Make a pipeline that finds lane lines on the road
-•	Reflect on your work in a written report
-________________________________________
-Reflection
-1. My pipeline. 
-My pipeline consisted of 5 steps.
-Step1, I converted the images to grayscale;
-Step2, I made the edge detection;
-Step3,I set the ROI;
-Step4,Detecting the lines with Hough transform；
-Step5,Show the lines on the image.
+# **Finding Lane Lines on the Road** 
+[![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-为了在左右车道画一条线，我通过以下方法修改了draw_lines()这个函数：
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by the method below:
-第一步：假设左右车道线分别拥有相似的特征（斜率和截距），计算斜率和平均位置；
-Step1, Assuming the left lane and right lane have the lines with similar features(slope and position) respectively , calculate the value of slope and average position.
-第二步：为了剔除伪线条和线条晃动，计算所有直线的均值和方差，去除奇怪的直线。
-Step2，To Removing spurious lines and lane shakiness，calculate the mean value and variance of the slope of the lines, get rid of the odd lines;
-第三步：计算斜率和位置的均值以得到一条直线。
-Step3,calculate the average of the slope and position to get one line;
-第四步：计算直线的底部和顶部的点，然后画出这条线，左右车道线的流程一样。
-Step4,calculate the bottom point and top point of the line, then draw the line;
-The left lane and the right line use the same pipeline.
+<img src="examples/laneLines_thirdPass.jpg" width="480" alt="Combined Image" />
 
-In video test, to the frames of the video, I used the same pipeline as in the image test .
+Overview
+---
 
-2. The potential shortcomings with my current pipeline
-One potential shortcoming:
-If the road is curving, the line detecting maybe not ok.
- Another shortcoming:
-If the ROI is set to be too large, some horizontal line is detected, such as the  edge of the car’s rear or the edge of the tree’s shape.
-Third shortcoming:
-I think if there is water on the road，the lanes’ feature will be weakened.
-3. Possible improvements to my pipeline
-To the above three shortcomings, the possible improvement would be:
-1. If the road is curving, I think the curve fitting method should be used.
-2.Before detecting the lines, maybe I should detected the cars in the ROI and erase them.
-3.To the water problem, maybe we should do some work such as edge enhancement, but that may cause other problems.
+When we drive, we use our eyes to decide where to go.  The lines on the road that show us where the lanes are act as our constant reference for where to steer the vehicle.  Naturally, one of the first things we would like to do in developing a self-driving car is to automatically detect lane lines using an algorithm.
+
+In this project you will detect lane lines in images using Python and OpenCV.  OpenCV means "Open-Source Computer Vision", which is a package that has many useful tools for analyzing images.  
+
+To complete the project, two files will be submitted: a file containing project code and a file containing a brief write up explaining your solution. We have included template files to be used both for the [code](https://github.com/udacity/CarND-LaneLines-P1/blob/master/P1.ipynb) and the [writeup](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md).The code file is called P1.ipynb and the writeup template is writeup_template.md 
+
+To meet specifications in the project, take a look at the requirements in the [project rubric](https://review.udacity.com/#!/rubrics/322/view)
+
+
+Creating a Great Writeup
+---
+For this project, a great writeup should provide a detailed response to the "Reflection" section of the [project rubric](https://review.udacity.com/#!/rubrics/322/view). There are three parts to the reflection:
+
+1. Describe the pipeline
+
+2. Identify any shortcomings
+
+3. Suggest possible improvements
+
+We encourage using images in your writeup to demonstrate how your pipeline works.  
+
+All that said, please be concise!  We're not looking for you to write a book here: just a brief description.
+
+You're not required to use markdown for your writeup.  If you use another method please just submit a pdf of your writeup. Here is a link to a [writeup template file](https://github.com/udacity/CarND-LaneLines-P1/blob/master/writeup_template.md). 
+
+
+The Project
+---
+
+## If you have already installed the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) you should be good to go!   If not, you should install the starter kit to get started on this project. ##
+
+**Step 1:** Set up the [CarND Term1 Starter Kit](https://classroom.udacity.com/nanodegrees/nd013/parts/fbf77062-5703-404e-b60c-95b78b2f3f9e/modules/83ec35ee-1e02-48a5-bdb7-d244bd47c2dc/lessons/8c82408b-a217-4d09-b81d-1bda4c6380ef/concepts/4f1870e0-3849-43e4-b670-12e6f2d4b7a7) if you haven't already.
+
+**Step 2:** Open the code in a Jupyter Notebook
+
+You will complete the project code in a Jupyter notebook.  If you are unfamiliar with Jupyter Notebooks, check out <A HREF="https://www.packtpub.com/books/content/basics-jupyter-notebook-and-python" target="_blank">Cyrille Rossant's Basics of Jupyter Notebook and Python</A> to get started.
+
+Jupyter is an Ipython notebook where you can run blocks of code and see results interactively.  All the code for this project is contained in a Jupyter notebook. To start Jupyter in your browser, use terminal to navigate to your project directory and then run the following command at the terminal prompt (be sure you've activated your Python 3 carnd-term1 environment as described in the [CarND Term1 Starter Kit](https://github.com/udacity/CarND-Term1-Starter-Kit/blob/master/README.md) installation instructions!):
+
+`> jupyter notebook`
+
+A browser window will appear showing the contents of the current directory.  Click on the file called "P1.ipynb".  Another browser window will appear displaying the notebook.  Follow the instructions in the notebook to complete the project.  
+
+**Step 3:** Complete the project and submit both the Ipython notebook and the project writeup
+
+## How to write a README
+A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+
